@@ -1,0 +1,21 @@
+# File: .github/workflows/main.yml
+name: Invoke Project 3 Grading Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read  # This allows the student repository to access the private reusable workflow
+
+jobs:
+  grading:
+    uses: CIS-5690-Student-25FA/course-workflows-25fa/.github/workflows/project3-gpu-workflow.yml@main
+    with:
+      project_dir: "project3"
+      student_repo: ${{ github.repository }}
+    secrets: inherit
